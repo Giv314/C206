@@ -1,0 +1,12 @@
+Funcionario
+Nome: Lucas
+Idade: 30
+CPF: 111.111.111-11
+Funcionario
+Nome: Joao
+Idade: 21
+CPF: 222.222.222-22
+Funcionario
+Nome: Joao
+Idade: 21
+CPF: 222.222.222-22

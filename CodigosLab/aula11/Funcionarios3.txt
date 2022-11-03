@@ -1,0 +1,7 @@
+FuncionarioJoao
+20
+123456
+Funcionario
+Joao
+20
+1234
