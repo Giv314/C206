@@ -18,20 +18,20 @@ public class Arquivo {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public void escrever(Livro livro){
+    public void escrever(Pokemon pokemon){
         try{
             os = new FileOutputStream(this.nomeArquivo, true);
             osw = new OutputStreamWriter(os);
             bf = new BufferedWriter(osw);
-            bf.write("Livro");
+            bf.write("Pokemon");
             bf.newLine();
-            bf.write(livro.getNome());
+            bf.write(pokemon.getNome());
             bf.newLine();
-            bf.write(livro.getAutor());
+            bf.write(pokemon.getTipo());
             bf.newLine();
-            bf.write(livro.getEditora());
+            bf.write(String.valueOf(pokemon.getPoder()));
             bf.newLine();
-            bf.write(String.valueOf(livro.getnPaginas()));
+            bf.write(String.valueOf(pokemon.getNivel()));
             bf.newLine();
         }catch (Exception e){
             System.out.println(e);
@@ -44,8 +44,9 @@ public class Arquivo {
         }
     }
 
-    public ArrayList<Livro> ler(){
-        ArrayList<Livro> array_livros = new ArrayList<>();
+    // Metodo para ler o arquivo e salvar os pokemon
+    public ArrayList<Pokemon> ler(){
+        ArrayList<Pokemon> array_pokemon = new ArrayList<>();
         try{
             is = new FileInputStream(this.nomeArquivo);
             isr = new InputStreamReader(is);
@@ -53,19 +54,19 @@ public class Arquivo {
 
             linha = br.readLine(); // Faz leitura
             while(linha != null){
-                if(linha.contains("Livro")){
-                    Livro l = new Livro();
-                    l.setNome(br.readLine());
-                    l.setAutor(br.readLine());
-                    l.setEditora(br.readLine());
-                    l.setnPaginas(Integer.parseInt(br.readLine()));
-                    array_livros.add(l);
+                if(linha.contains("Pokemon")){
+                    Pokemon p = new Pokemon();
+                    p.setNome(br.readLine());
+                    p.setTipo(br.readLine());
+                    p.setPoder(Double.parseDouble(br.readLine()));
+                    p.setNivel(Integer.parseInt(br.readLine()));
+                    array_pokemon.add(p);
                 }
                 linha = br.readLine();
             }
         }catch (Exception e){
             System.out.println(e);
         }
-        return array_livros;
+        return array_pokemon;
     }
 }

@@ -14,24 +14,24 @@ public class Arquivo {
     private BufferedReader br;
     private String linha;
 
+    // Cria o objeto txt
     Arquivo(String nomeArquivo){
         this.nomeArquivo = nomeArquivo;
     }
 
-    public void escrever(Livro livro){
+    // Escreve as infos dos carrinhos em um arquivo txt
+    public void escrever(Carrinho carrinho){
         try{
             os = new FileOutputStream(this.nomeArquivo, true);
             osw = new OutputStreamWriter(os);
             bf = new BufferedWriter(osw);
-            bf.write("Livro");
+            bf.write("Carrinho");
             bf.newLine();
-            bf.write(livro.getNome());
+            bf.write(carrinho.getNomeJogador());
             bf.newLine();
-            bf.write(livro.getAutor());
+            bf.write(String.valueOf(carrinho.getVelocidade()));
             bf.newLine();
-            bf.write(livro.getEditora());
-            bf.newLine();
-            bf.write(String.valueOf(livro.getnPaginas()));
+            bf.write(carrinho.getChassi());
             bf.newLine();
         }catch (Exception e){
             System.out.println(e);
@@ -44,8 +44,8 @@ public class Arquivo {
         }
     }
 
-    public ArrayList<Livro> ler(){
-        ArrayList<Livro> array_livros = new ArrayList<>();
+    public ArrayList<Carrinho> ler(){
+        ArrayList<Carrinho> array_carrinho = new ArrayList<>();
         try{
             is = new FileInputStream(this.nomeArquivo);
             isr = new InputStreamReader(is);
@@ -53,19 +53,18 @@ public class Arquivo {
 
             linha = br.readLine(); // Faz leitura
             while(linha != null){
-                if(linha.contains("Livro")){
-                    Livro l = new Livro();
-                    l.setNome(br.readLine());
-                    l.setAutor(br.readLine());
-                    l.setEditora(br.readLine());
-                    l.setnPaginas(Integer.parseInt(br.readLine()));
-                    array_livros.add(l);
+                if(linha.contains("Carrinho")){
+                    Carrinho c = new Carrinho();
+                    c.setNomeJogador(br.readLine());
+                    c.setVelocidade(Integer.parseInt(br.readLine()));
+                    c.setChassi(br.readLine());
+                    array_carrinho.add(c);
                 }
                 linha = br.readLine();
             }
         }catch (Exception e){
             System.out.println(e);
         }
-        return array_livros;
+        return array_carrinho;
     }
 }
